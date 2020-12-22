@@ -7,8 +7,9 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using XmasEveCounter;
 
-namespace How_Many_Eve_s__till_Christmas
+namespace XmasEveCounter
 {
     public class Program
     {
