@@ -30,7 +30,7 @@
             {
                 ChristmasDate = new DateTime(int.Parse(DateTime.Now.ToString("yyyy")) + 1, 12, 25);
                 int daysInYear = DateTime.IsLeapYear(ChristmasDate.Year) ? 366 : 365;
-                daysToGo = (ChristmasDate.DayOfYear + daysInYear) - DateTime.Now.DayOfYear;
+                daysToGo = (ChristmasDate.DayOfYear - DateTime.Now.DayOfYear) + daysInYear;
             }
         }
         else
