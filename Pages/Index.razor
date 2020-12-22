@@ -1,0 +1,52 @@
+﻿@page "/"
+
+<h1>Its Christmas @eves</h1>
+<hr />
+<h2>There are @daysToGo days left until Christmas</h2>
+<marquee>merry christmas</marquee>
+
+<SurveyPrompt Title="How is Blazor working for you?" />
+
+@code {
+    public int nowMonth = int.Parse(DateTime.Now.ToString("MM"));
+    public int nowDay = int.Parse(DateTime.Now.ToString("dd"));
+
+    public static int daysToGo;
+
+    public string eves;
+
+    public static DateTime ChristmasDate;
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (nowMonth == 12)
+        {
+            if (nowDay <= 24)
+            {
+                ChristmasDate = new DateTime(int.Parse(DateTime.Now.ToString("yyyy")), 12, 25);
+                daysToGo = ChristmasDate.DayOfYear - DateTime.Now.DayOfYear;
+
+            }
+            else
+            {
+                ChristmasDate = new DateTime(int.Parse(DateTime.Now.ToString("yyyy")) + 1, 12, 25);
+                int daysInYear = DateTime.IsLeapYear(ChristmasDate.Year) ? 366 : 365;
+                daysToGo = (ChristmasDate.DayOfYear + daysInYear) - DateTime.Now.DayOfYear;
+            }
+        }
+        else
+        {
+            ChristmasDate = new DateTime(int.Parse(DateTime.Now.ToString("yyyy")), 12, 25);
+            daysToGo = ChristmasDate.DayOfYear - DateTime.Now.DayOfYear;
+        }
+
+        for (int i = 0; i < daysToGo; i++)
+        {
+            eves = eves + "Eve ";
+        }
+    }
+
+
+
+}
+
