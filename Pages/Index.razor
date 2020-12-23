@@ -1,9 +1,34 @@
 ﻿@page "/"
 
+<style>
+
+    body {
+         background-color: #c0392b;
+         color: #f9ebea;
+    }
+    hr {
+        border-color: #f9ebea;
+    }
+
+</style>
+
 <h1>Its Christmas @eves</h1>
 <hr />
-<h2>There are @daysToGo sleeps left until Christmas</h2>
-<marquee>merry christmas</marquee>
+@if (isXmas)
+{
+    <h2>Its Christmas today! Yay!</h2>
+    <marquee>merry christmas</marquee>
+}
+else if (daysToGo < 48)
+{
+    <h2>There are @daysToGo sleeps left until Christmas</h2>
+    <marquee>not long now...</marquee>
+}
+else
+{
+    <h2>There are @daysToGo sleeps left until Christmas</h2>
+    <marquee>its quite a long time</marquee>
+}
 <hr />
 <p>This is a (very) small project made in Blazor WebAssembly and C# by Finn O'Neill (Check out my <a href="https://github.com/Explorer017">GitHub Page!</a>).</p>
 
@@ -19,6 +44,7 @@
     public int nowMonth = int.Parse(now.ToString("MM"));
     public int nowDay = int.Parse(now.ToString("dd"));
 
+    public bool isXmas = false;
 
 
     public static string label1;
@@ -53,9 +79,18 @@
         TimeSpan ts = ChristmasDate.Subtract(now);
         daysToGo = ts.Days + 1;
 
-        for (int i = 0; i < daysToGo; i++)
+        if (nowMonth == 12 && nowDay == 25)
         {
-            eves = eves + "Eve ";
+            eves = "Day";
+            daysToGo = 0;
+            isXmas = true;
+        }
+        else
+        {
+            for (int i = 0; i < daysToGo; i++)
+            {
+                eves = eves + "Eve ";
+            }
         }
     }
 
