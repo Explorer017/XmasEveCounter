@@ -1,8 +1,9 @@
 ﻿@page "/"
+@using System.Timers
 
 <h1>Its Christmas @eves</h1>
 <hr />
-<h2>There are @daysToGo days left until Christmas</h2>
+<h2>There are @daysToGo sleeps left until Christmas</h2>
 <marquee>merry christmas</marquee>
 <hr />
 <p>This is a (very) small project made in Blazor WebAssembly and C# by Finn O'Neill (Check out my <a href="https://github.com/Explorer017">GitHub Page!</a>).</p>
@@ -12,8 +13,16 @@
 
 
 @code {
-    public int nowMonth = int.Parse(DateTime.Now.ToString("MM"));
-    public int nowDay = int.Parse(DateTime.Now.ToString("dd"));
+
+
+    public static DateTime now = DateTime.Now;
+
+    public int nowMonth = int.Parse(now.ToString("MM"));
+    public int nowDay = int.Parse(now.ToString("dd"));
+
+
+
+    public static string label1;
 
     public static int daysToGo;
 
@@ -21,34 +30,36 @@
 
     public static DateTime ChristmasDate;
 
+
     protected override async Task OnInitializedAsync()
     {
         if (nowMonth == 12)
         {
             if (nowDay <= 24)
             {
-                ChristmasDate = new DateTime(int.Parse(DateTime.Now.ToString("yyyy")), 12, 25);
-                daysToGo = ChristmasDate.DayOfYear - DateTime.Now.DayOfYear;
+                ChristmasDate = new DateTime(int.Parse(now.ToString("yyyy")), 12, 25);
 
             }
             else
             {
-                ChristmasDate = new DateTime(int.Parse(DateTime.Now.ToString("yyyy")) + 1, 12, 25);
-                int daysInYear = DateTime.IsLeapYear(ChristmasDate.Year) ? 366 : 365;
-                daysToGo = (ChristmasDate.DayOfYear - DateTime.Now.DayOfYear) + daysInYear;
+                ChristmasDate = new DateTime(int.Parse(now.ToString("yyyy")) + 1, 12, 25);
             }
         }
         else
         {
-            ChristmasDate = new DateTime(int.Parse(DateTime.Now.ToString("yyyy")), 12, 25);
-            daysToGo = ChristmasDate.DayOfYear - DateTime.Now.DayOfYear;
+            ChristmasDate = new DateTime(int.Parse(now.ToString("yyyy")), 12, 25);
         }
+
+
+        TimeSpan ts = ChristmasDate.Subtract(now);
+        daysToGo = ts.Days + 1;
 
         for (int i = 0; i < daysToGo; i++)
         {
             eves = eves + "Eve ";
         }
     }
+
 
 
 
