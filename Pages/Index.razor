@@ -21,25 +21,16 @@
             <h4>or @(Math.Round(daysToGo*24 / 6.15, 2)) rewatches of the Shrek movies until Christmas</h4>
             break;
         case 2:
-            <h4>or light will travel @(daysToGo*24*60*60*299792458)m by Christmas</h4>
-            break;
-        case 3:
             <h4>or @(daysToGo*24*60*60) seconds until Christmas</h4>
             break;
-        case 4:
+        case 3:
             <h4>or you will blink @(daysToGo*25000) times until Christmas</h4>
             break;
-        case 5:
+        case 4:
             <h4>or the sun will lose @(Math.Round(((double)daysToGo/365)*360, 2)) tons of mass by Christmas</h4>
             break;
-        case 6:
-            <h4>or @(Math.Round((double)daysToGo/(356*9),5)) squirrel lifetimes until Christmas</h4>
-            break;
-        case 7:
-            <h4>or a cow will produce @(daysToGo*28) litres of milk by Christmas</h4>
-            break;
         default:
-            <h4>or @(28000000*daysToGo) dreams will occur till Christmas</h4>
+            <h4>or @(Math.Round((double)daysToGo/(356*9),5)) squirrel lifetimes until Christmas</h4>
             break;
     }
     <marquee>@(daysToGo < 48 ? "not long now..." : "its quite a long time")</marquee>
@@ -53,7 +44,7 @@
     public static int daysToGo;
     public string eves;
     public static DateTime ChristmasDate;
-    public static int randomnum = new Random().Next(1, 8);
+    public static int randomnum = new Random().Next(1, 5);
 
     protected override async Task OnInitializedAsync()
     {
