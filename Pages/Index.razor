@@ -1,7 +1,6 @@
 ﻿@page "/"
 
 <style>
-
     body {
          background-color: #c0392b;
          color: #f9ebea;
@@ -9,81 +8,53 @@
     hr {
         border-color: #f9ebea;
     }
-
 </style>
-
 <h1>Its Christmas @eves</h1>
 <hr />
-@if (isXmas)
+@if (nowMonth == 12 && nowDay == 25)
 {
     <h2>Its Christmas today! Yay!</h2>
     <marquee>merry christmas</marquee>
 }
-else if (daysToGo < 48)
-{
-    <h2>There are @daysToGo sleeps left until Christmas</h2>
-    <marquee>not long now...</marquee>
-}
-else
-{
-    <h2>There are @daysToGo sleeps left until Christmas</h2>
-    <marquee>its quite a long time</marquee>
+else {
+    <h2>There @(daysToGo==1 ? "is" : "are") @daysToGo sleep@(daysToGo==1 ? "" : "s") left until Christmas</h2>
+    if (daysToGo < 48)
+    {
+        <marquee>not long now...</marquee>
+    }
+    else
+    {
+        <marquee>its quite a long time</marquee>
+    }
 }
 <hr />
 <p>This is a (very) small project made in Blazor WebAssembly and C# by Finn O'Neill (Check out my <a href="https://github.com/Explorer017">GitHub Page!</a>).</p>
-
-
-
-
-
+<p>did  you know that random is @randomnum</p>
 @code {
-
-
     public static DateTime now = DateTime.Now;
-
     public int nowMonth = int.Parse(now.ToString("MM"));
     public int nowDay = int.Parse(now.ToString("dd"));
-
-    public bool isXmas = false;
-
-
     public static string label1;
-
     public static int daysToGo;
-
     public string eves;
-
     public static DateTime ChristmasDate;
-
+    public static int randomnum = new Random().Next(1, 6);
 
     protected override async Task OnInitializedAsync()
     {
-        if (nowMonth == 12)
-        {
-            if (nowDay <= 24)
-            {
+        if (nowMonth == 12)  {
+            if (nowDay <= 24) {
                 ChristmasDate = new DateTime(int.Parse(now.ToString("yyyy")), 12, 25);
-
-            }
-            else
-            {
+            } else {
                 ChristmasDate = new DateTime(int.Parse(now.ToString("yyyy")) + 1, 12, 25);
             }
-        }
-        else
-        {
-            ChristmasDate = new DateTime(int.Parse(now.ToString("yyyy")), 12, 25);
-        }
-
-
+        } else { ChristmasDate = new DateTime(int.Parse(now.ToString("yyyy")), 12, 25); }
         TimeSpan ts = ChristmasDate.Subtract(now);
         daysToGo = ts.Days + 1;
-
         if (nowMonth == 12 && nowDay == 25)
         {
             eves = "Day";
             daysToGo = 0;
-            isXmas = true;
         }
         else
         {
@@ -93,9 +64,4 @@ else
             }
         }
     }
-
-
-
-
 }
-
