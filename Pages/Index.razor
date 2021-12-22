@@ -18,31 +18,28 @@
     <h2>There @(daysToGo==1 ? "is" : "are") @daysToGo sleep@(daysToGo==1 ? "" : "s") left until Christmas</h2>
     @switch (randomnum) {
         case 1:
-            <h2>or @(Math.Round(daysToGo*24 / 6.15, 2)) rewatches of the Shrek movies until Christmas</h2>
+            <h3>or @(Math.Round(daysToGo*24 / 6.15, 2)) rewatches of the Shrek movies until Christmas</h3>
             break;
         case 2:
-            <h2>or light will travel @(daysToGo*24*60*60*299792458)m by Christmas</h2>
+            <h3>or light will travel @(daysToGo*24*60*60*299792458)m by Christmas</h3>
             break;
         case 3:
-            <h2>or @(daysToGo*24*60*60) seconds until Christmas</h2>
+            <h3>or @(daysToGo*24*60*60) seconds until Christmas</h3>
             break;
         case 4:
-            <h2>or @(daysToGo*24*60/1.5) moments will occur until Christmas</h2>
+            <h3>or you will blink @(daysToGo*25000) times until Christmas</h3>
             break;
         case 5:
-            <h2>or you will blink @(daysToGo*25000) times until Christmas</h2>
+            <h3>or the sun will lose @(Math.Round(((double)daysToGo/365)*360, 2)) tons of mass by Christmas</h3>
             break;
         case 6:
-            <h2>or the sun will lose @(Math.Round(((double)daysToGo/365)*360, 2)) tons of mass by Christmas</h2>
+            <h3>or @(((double)daysToGo/365)*9) squirrel lifetimes until Christmas</h3>
             break;
         case 7:
-            <h2>or @(((double)daysToGo/365)*9) squirrel lifetimes until Christmas</h2>
-            break;
-        case 8:
-            <h2>or a cow will produce @(daysToGo*28) litres of milk by Christmas</h2>
+            <h3>or a cow will produce @(daysToGo*28) litres of milk by Christmas</h3>
             break;
         default:
-            <h2>or @(28000000*daysToGo) dreams will occur till Christmas</h2>
+            <h3>or @(28000000*daysToGo) dreams will occur till Christmas</h3>
             break;
     }
     <marquee>@(daysToGo < 48 ? "not long now..." : "its quite a long time")</marquee>
@@ -57,7 +54,7 @@
     public static int daysToGo;
     public string eves;
     public static DateTime ChristmasDate;
-    public static int randomnum = new Random().Next(1, 9);
+    public static int randomnum = new Random().Next(1, 8);
 
     protected override async Task OnInitializedAsync()
     {
